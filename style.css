@@ -1,17 +1,17 @@
 #test-swipe-1{
-  margin-top:5px;
+  margin-top:2px;
   padding:20px;
 }
 #test-swipe-2{
-  margin-top:10px;
-  padding:20px;
+  margin-top:0px;
+  padding:5px;
 }
 #test-swipe-3{
-  margin-top:10px;
+  margin-top:0px;
   padding:20px;
 }
 #test-swipe-4{
-  margin-top:10px;
+  margin-top:0px;
   padding:20px;
 }
 
@@ -38,4 +38,8 @@
     height:300px;
 
   }
+}
+
+.tabs{
+  border-bottom:2px solid red;
 }
