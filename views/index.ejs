@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase learning</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+
+<body>
+
+    <h1 class="center">All orders</h1>
+
+    <ul class="collapsible" data-collapsible="accordion">
+      <% data.forEach(function(doc){ %>
+
+
+
+
+        <li>
+            <div class="collapsible-header"><i class="material-icons">notifications_active</i>First Order</div>
+            <div class="collapsible-body">
+
+                <div class="row">
+                    <div class="col s12 m6">
+                        <div class="row">
+                            <div id="customer-detail" class="col s12 m6 red lighten-2">
+                                <h5 class="center highlight"><i class="material-icons">local_dining</i> Order Detail</h6>
+                                    <div class="divider"></div>
+                                    <div id="order-detail">
+                                        <h4><i class="material-icons">local_dining</i> Dishes</h4>
+                                        <table class="centered highlight">
+                                            <thead>
+                                                <tr>
+                                                    <th>Item Name</th>
+                                                    <th>Item Quantity</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+
+
+                                          <% for(var property in doc.data().dishes){ %>
+
+
+
+
+
+
+                                                <tr>
+
+                                                    <td><%= property %></td>
+                                                    <td><%= doc.data().dishes[property] %></td>
+                                                </tr>
+
+
+                                           <% } %>
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+
+
+
+                            </div>
+                            <div style="margin-left:0px;" id="customer-detail" class="col s12 m6 teal lighten-2">
+                                <h5 class="center"><i class="material-icons">account_box</i> Customer Detail</h5>
+                                <div class="divider"></div>
+                                <p><i class="fas fa-user"></i> Name: </i><b><%= doc.data().user_details.user_id%></b></p>
+                                <p><i class="fas fa-envelope"></i> Email: </i><%= doc.data().user_details.user_email%></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m6 blue lighten-2" id="address-detail">
+                        <h5 class="center"><i class="material-icons">location_on</i> Address and Map</h5>
+                        <div class="divider"></div>
+                        <div class="map-address-decoded">
+                            <p class="center centered centre"><i class="material-icons">location_on</i> <b>Address : </b> E-182 Alpha Commercial Greater Noida</p>
+                        </div>
+
+                        <br>
+                        <div id="map" style="background:yellow"></div>
+                    </div>
+                    <div class="col s12">
+                        <button id="accept-btn" class="btn waves-effect btn-large  waves-light blue darken-4" type="submit" name="action">Accept Order
+                        <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
+        </li>
+
+
+    <% }) %>
+
+    </ul>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script>
+        function myMap() {
+            var mapOptions = {
+                center: new google.maps.LatLng(28.613939, 77.209021),
+                zoom: 10,
+                mapTypeId: google.maps.MapTypeId.map
+            }
+            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7LF-0vlmmKUfesIHLJwAkDOpu7UjZl08&callback=myMap"></script>
+    <script src="/public/js/script.js" charset="utf-8"></script>
+</body>
+
+</html>
